@@ -29,8 +29,7 @@ public class User  extends BaseEntity {
 
     private Boolean admin;
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
-    private Set<Vacation> vacations=new HashSet<>();
+
 
  @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private Set<Advance> advances=new HashSet<>();

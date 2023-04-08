@@ -18,7 +18,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 public class Vacation extends BaseEntity {
-
+    public Vacation(Onay onay) {
+        this.onay = onay;
+    }
 
     private Onay onay;
 
@@ -28,7 +30,7 @@ public class Vacation extends BaseEntity {
 
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
 
