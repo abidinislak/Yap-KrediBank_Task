@@ -17,24 +17,24 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDate;
-@OpenAPIDefinition(
-
-        info = @Info(
-
-
-                title = "Yapı Kredi Bank Personel Management",
-                version = "0.0.1",
-                description = "This is Yapı Kredi Bank perosnel management project(Vacation)",
-                termsOfService = "java",
-                contact = @Contact(
-
-                        name = "Abidin IŞLAK",
-                        email = "abidinislak"
-                ),license = @License(name = "liense",
-        url = "abidinislak")
-        )
-
-)
+//@OpenAPIDefinition(
+//
+//        info = @Info(
+//
+//
+//                title = "Yapı Kredi Bank Personel Management",
+//                version = "0.0.1",
+//                description = "This is Yapı Kredi Bank perosnel management project(Vacation)",
+//                termsOfService = "java",
+//                contact = @Contact(
+//
+//                        name = "Abidin IŞLAK",
+//                        email = "abidinislak"
+//                ),license = @License(name = "liense",
+//        url = "abidinislak")
+//        )
+//
+//)
 @SpringBootApplication
 public class YapiKrediApplication implements CommandLineRunner {
     @Autowired
