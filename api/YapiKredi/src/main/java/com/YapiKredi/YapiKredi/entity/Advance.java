@@ -14,12 +14,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Advance extends  BaseEntity{
+public class Advance extends BaseEntity {
 
 
     @ManyToOne
-    @JoinColumn(name = "user_id",nullable = false)
-    private User user;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User_H user;
 
     private int amount;
 }

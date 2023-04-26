@@ -1,7 +1,9 @@
 package com.YapiKredi.YapiKredi.entity;
 
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,8 +19,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class User  extends BaseEntity {
-
+public class User_H extends BaseEntity {
 
 
     private String userName;
@@ -30,9 +31,8 @@ public class User  extends BaseEntity {
     private Boolean admin;
 
 
-
- @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
-    private Set<Advance> advances=new HashSet<>();
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<Advance> advances = new HashSet<>();
 
 
 }

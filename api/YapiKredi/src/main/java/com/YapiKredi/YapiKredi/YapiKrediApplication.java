@@ -1,15 +1,11 @@
 package com.YapiKredi.YapiKredi;
 
 import com.YapiKredi.YapiKredi.dto.Vacat.Vacation_Dto;
-import com.YapiKredi.YapiKredi.entity.User;
+import com.YapiKredi.YapiKredi.entity.User_H;
 import com.YapiKredi.YapiKredi.entity.Vacation;
 import com.YapiKredi.YapiKredi.service.UserService;
 import com.YapiKredi.YapiKredi.service.VacationService;
 import com.YapiKredi.YapiKredi.util.Onay;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import io.swagger.v3.oas.annotations.info.Contact;
-import io.swagger.v3.oas.annotations.info.Info;
-import io.swagger.v3.oas.annotations.info.License;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,6 +13,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDate;
+
 //@OpenAPIDefinition(
 //
 //        info = @Info(
@@ -51,11 +48,11 @@ public class YapiKrediApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        User entity = new User();
+        User_H entity = new User_H();
         entity.setStartDate(LocalDate.of(2022, 01, 01));
         entity.setUserName("abididn");
 
-        User returnUser = userService.save(entity);
+        User_H returnUser = userService.save(entity);
 
         Vacation vacation = new Vacation();
 

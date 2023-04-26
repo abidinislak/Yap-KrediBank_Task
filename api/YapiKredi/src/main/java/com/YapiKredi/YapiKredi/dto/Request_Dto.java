@@ -1,22 +1,35 @@
 package com.YapiKredi.YapiKredi.dto;
 
 
+import com.YapiKredi.YapiKredi.validation.DateValidation;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
-@JsonPropertyOrder({"userid", "amount", "date"})
+
 public class Request_Dto {
 
     @JsonProperty("username")
     private int userid;
+    @NotNull
     @JsonProperty("amount")
     private int amount;
+    @NotNull
+
     @JsonProperty("date")
-    private String date;
+//    custom validatein
+    @DateValidation
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    private Date date;
 
 
+    @Min(value = 10, message = "at least must be 10")
+    private int testforvalidation;
 }

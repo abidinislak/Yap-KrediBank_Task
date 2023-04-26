@@ -4,8 +4,9 @@ import com.YapiKredi.YapiKredi.dto.Request_Dto;
 import com.YapiKredi.YapiKredi.dto.ResponeseApi_Dto;
 import com.YapiKredi.YapiKredi.dto.Vacat.Vacation_Dto;
 import com.YapiKredi.YapiKredi.entity.Advance;
-import com.YapiKredi.YapiKredi.entity.User;
+import com.YapiKredi.YapiKredi.entity.User_H;
 import com.YapiKredi.YapiKredi.entity.Vacation;
+import com.YapiKredi.YapiKredi.exceptions.ResourceNotFoundException;
 import com.YapiKredi.YapiKredi.repository.VacationRepository;
 import com.YapiKredi.YapiKredi.util.Onay;
 import com.YapiKredi.YapiKredi.util.ResponseApi;
@@ -13,10 +14,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.DayOfWeek;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.Period;
+import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,11 +54,14 @@ public class VacationService {
     public ResponeseApi_Dto saveVacation(Request_Dto requestDto) {
 
         int userid = requestDto.getUserid();
-        LocalDate startDate = LocalDate.parse(requestDto.getDate());
+        LocalDate startDate;
+        startDate = requestDto.getDate().toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
         int endDate = requestDto.getAmount();
 
 
-        User userEntity = userService.findById(userid);
+        User_H userEntity = userService.findById(userid);
 
         LocalDate theday = startDate;
 
@@ -182,7 +183,7 @@ public class VacationService {
         return amount;
     }
 
-    ResponseApi savevacationProcess(User user, LocalDate start, LocalDate end, Boolean isAdvanced) {
+    ResponseApi savevacationProcess(User_H user, LocalDate start, LocalDate end, Boolean isAdvanced) {
 
         Vacation entity = new Vacation();
         entity.setUser(user);
@@ -250,7 +251,7 @@ public class VacationService {
 
     public ResponseApi approveVacation(int userid, int vacationid) {
 
-        User user = userService.findById(userid);
+        User_H user = userService.findById(userid);
 
 
         if (!user.getAdmin()) return new ResponseApi("YOU are not auotoirized to this");
@@ -271,6 +272,14 @@ public class VacationService {
         Vacation entity = modelMapper.map(vacationDto, Vacation.class);
 
         vacationRepository.save(entity);
+
+    }
+
+    public Vacation_Dto findById(Integer id) {
+
+
+        Vacation entity = vacationRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Vacation not foun by id" + id));
+        return modelMapper.map(entity, Vacation_Dto.class);
 
     }
 }

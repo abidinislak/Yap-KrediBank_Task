@@ -1,41 +1,38 @@
 package com.YapiKredi.YapiKredi.repository;
 
 import com.YapiKredi.YapiKredi.entity.Advance;
-import com.YapiKredi.YapiKredi.entity.User;
+import com.YapiKredi.YapiKredi.entity.User_H;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 @SpringBootTest
 class AdvanceRepositoryTest {
 
-@Autowired
+    @Autowired
     AdvanceRepository advanceRepository;
 
-@Autowired
+    @Autowired
     UserRepository userRepository;
 
 
+    @Test
+    void saveAdvance() {
 
-@Test
-    void saveAdvance(){
+        User_H entityUser = userRepository.findById(1).orElseThrow(() -> new RuntimeException("usr not fund"));
 
-    User entityUser=userRepository.findById(1).orElseThrow(()->new RuntimeException("usr not fund"));
+        Advance entity = new Advance();
+        entity.setUser(entityUser);
+        entity.setAmount(1);
 
-    Advance entity=new Advance();
-    entity.setUser(entityUser);
-    entity.setAmount(1);
+        Advance sveduser = advanceRepository.save(entity);
 
-    Advance sveduser=advanceRepository.save(entity);
-
-    assertTrue(sveduser.getId()>0);
-
+        assertTrue(sveduser.getId() > 0);
 
 
-
-
-}
+    }
 
 
 }

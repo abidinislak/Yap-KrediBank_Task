@@ -1,14 +1,14 @@
 package com.YapiKredi.YapiKredi.repository;
 
-import com.YapiKredi.YapiKredi.entity.User;
+import com.YapiKredi.YapiKredi.entity.User_H;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.graphql.tester.AutoConfigureGraphQlTester;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 @SpringBootTest
 class UserRepositoryTest {
 
@@ -17,17 +17,17 @@ class UserRepositoryTest {
     UserRepository userRepository;
 
     @Test
-    void saveUser(){
+    void saveUser() {
 
-        User entity=new User();
+        User_H entity = new User_H();
 
         entity.setUserName("first user");
 
         entity.setStartDate(LocalDate.now());
 
-        User saved=userRepository.save(entity);
+        User_H saved = userRepository.save(entity);
 
-        assertTrue(saved.getId()>0);
+        assertTrue(saved.getId() > 0);
 
     }
 }
