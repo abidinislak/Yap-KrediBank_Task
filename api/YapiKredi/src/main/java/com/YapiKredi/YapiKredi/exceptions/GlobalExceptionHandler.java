@@ -25,12 +25,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErroObject> handleVacationNotFounException(ResourceNotFoundException exception, WebRequest webRequest) {
-
         ErroObject erroObject = new ErroObject();
         erroObject.setStatusCode(HttpStatus.NOT_FOUND.value());
         erroObject.setMessage(exception.getMessage());
         erroObject.setTimestamp(new Date());
-
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erroObject);
 
     }
@@ -66,24 +64,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         erroObject.setStatusCode(HttpStatus.BAD_REQUEST.value());
         erroObject.setMessage("custom message");
         erroObject.setTimestamp(new Date());
-
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erroObject);
 
     }
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-
-
         Map<String, Object> body = new HashMap<String, Object>();
         body.put("timestamp", new Date());
         body.put("statusCode", HttpStatus.BAD_REQUEST.value());
-
         List<String> errros = ex.getBindingResult().getFieldErrors().stream().map(x -> x.getDefaultMessage()).collect(Collectors.toList());
-
-
         body.put("message", errros);
-
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
 

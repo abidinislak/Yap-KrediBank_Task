@@ -15,9 +15,7 @@ public class AdvanceService {
     AdvanceRepository advanceRepository;
 
     public Advance save(Advance advanceEntity) {
-
-
-        return  advanceRepository.save(advanceEntity);
+        return advanceRepository.save(advanceEntity);
     }
 
     public List<Advance> findCustomUser(int id) {

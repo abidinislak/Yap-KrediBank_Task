@@ -11,11 +11,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonPropertyOrder({"message","test"})
+@JsonPropertyOrder({"message", "test"})
 public class ResponeseApi_Dto {
 
     @JsonProperty("message")
     private String message;
- @JsonProperty("test")
+    @JsonProperty("test")
     private int test;
 }

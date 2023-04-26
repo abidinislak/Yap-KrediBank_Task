@@ -14,11 +14,8 @@ public class Vacation_Dto {
 
 
     private Onay onay;
-
     private LocalDate startDate;
     private LocalDate endtDate;
-
-
     private User_H user;
 
 

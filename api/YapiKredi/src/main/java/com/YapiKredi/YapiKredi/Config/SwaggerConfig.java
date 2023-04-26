@@ -23,12 +23,9 @@ public class SwaggerConfig {
 
     @Bean
     public OpenAPI baseOpenApi() throws IOException {
-
         ReadJsonFeilToJsonObject readJsonFeilToJsonObject = new ReadJsonFeilToJsonObject();
         ApiResponse badRequestApi = new ApiResponse().content(new Content().addMediaType(MediaType.APPLICATION_JSON_VALUE, new io.swagger.v3.oas.models.media.MediaType().addExamples("default", new Example().value(readJsonFeilToJsonObject.read().get("badrequestresponse")).description("bad request"))));
         ApiResponse internalServerApi = new ApiResponse().content(new Content().addMediaType(MediaType.APPLICATION_JSON_VALUE, new io.swagger.v3.oas.models.media.MediaType().addExamples("default", new Example().value(readJsonFeilToJsonObject.read().get("internalresvererror")).description("internalresvererror"))));
-
-
         Components components = new Components();
         components.addResponses("badrequest", badRequestApi);
         components.addResponses("internalServerApi", internalServerApi);
@@ -39,8 +36,8 @@ public class SwaggerConfig {
     public GroupedOpenApi postapi() {
         String[] paths = {"/api/**"};
         return GroupedOpenApi.builder().group("post").pathsToMatch(paths).build();
-
     }
+
     @Bean
     public GroupedOpenApi denemeapi() {
         String[] paths = {"/deneme/**"};

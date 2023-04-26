@@ -21,16 +21,9 @@ import java.util.Set;
 @Entity
 public class User_H extends BaseEntity {
 
-
     private String userName;
-
-
     private LocalDate startDate;
-
-
     private Boolean admin;
-
-
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Advance> advances = new HashSet<>();
 

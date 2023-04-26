@@ -238,7 +238,6 @@ public class VacationService {
 
 
         //Can be done database
-
         return ((date.getDayOfWeek() == DayOfWeek.SATURDAY) || (date.getDayOfWeek() == DayOfWeek.SUNDAY)
 
 
